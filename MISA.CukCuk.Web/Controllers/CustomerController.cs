@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MISA.BL;
 using MISA.BL.Exceptions;
 using MISA.Common.Entities;
+using MISA.CukCuk.Api.Controllers;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace MISA.CukCuk.Web.Controllers
 {
     [Route("api/v1/[controller]s")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerController : BaseController<Customer>
     {
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult Get()
         {
             CustomerBL customerBL = new CustomerBL();
@@ -33,9 +34,9 @@ namespace MISA.CukCuk.Web.Controllers
             {
                 return NoContent();
             }
-        }
+        }*/
 
-        [HttpGet("{customerId}")]
+        /*[HttpGet("{customerId}")]
         public IActionResult Get(Guid customerId)
         {
             CustomerBL customerBL = new CustomerBL();
@@ -52,7 +53,7 @@ namespace MISA.CukCuk.Web.Controllers
             {
                 return NoContent();
             }
-        }
+        }*/
 
         [HttpGet("Paging")]
         public IActionResult GetPaging (int pageIndex, int pageSize)
@@ -89,7 +90,7 @@ namespace MISA.CukCuk.Web.Controllers
             }
         }
 
-        [HttpPost]
+       /* [HttpPost]
         public IActionResult Post([FromBody] Customer customer)
         {
             try
@@ -132,9 +133,9 @@ namespace MISA.CukCuk.Web.Controllers
             }
             
         }
-
+*/
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody] Customer customer)
         {
             CustomerBL customerBL = new CustomerBL();
@@ -147,10 +148,10 @@ namespace MISA.CukCuk.Web.Controllers
             {
                 return NoContent();
             }
-        }
+        }*/
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
             CustomerBL customerBL = new CustomerBL();
@@ -163,6 +164,6 @@ namespace MISA.CukCuk.Web.Controllers
             {
                 return NoContent();
             }
-        }
+        }*/
     }
 }

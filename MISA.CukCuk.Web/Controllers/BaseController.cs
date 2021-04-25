@@ -1,69 +1,66 @@
-﻿using Dapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MISA.BL;
 using MISA.BL.Exceptions;
-using MISA.Common.Entities;
-using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-    [Route("api/v1/[controller]s")]
-    [ApiController]
-    public class CustomerGroupController : BaseController<CustomerGroup>
+   /* [Route("api/v1/[controller]s")]
+    [ApiController]*/
+    public class BaseController<MISAEntity> : ControllerBase
     {
-       /* [HttpGet]
+        [HttpGet]
         public IActionResult Get()
         {
-            CustomerGroupBL customerGroupBL = new CustomerGroupBL();
-            var customerGroups = customerGroupBL.GetAll<CustomerGroup>();
+            BaseBL baseBL = new BaseBL();
+            var entities = baseBL.GetAll<MISAEntity>();
             // 4. Kiểm tra dữ liệu và trả về cho client
             // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
             // - Không có dữ liệu thì trả về 204:
-            if (customerGroups.Count() > 0)
+            if (entities.Count() > 0)
             {
-                return Ok(customerGroups);
+                return Ok(entities);
 
             }
             else
             {
                 return NoContent();
             }
-        }*/
+        }
 
-        /*[HttpGet("{id}")]
+        [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            CustomerGroupBL customerGroupBL = new CustomerGroupBL();
-            var customerGroup = customerGroupBL.GetById<CustomerGroup>(id);
+            BaseBL baseBL = new BaseBL();
+
+            var entity = baseBL.GetById<MISAEntity>(id);
 
             // 4. Kiểm tra dữ liệu và trả về cho client
             // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
             // - Không có dữ liệu thì trả về 204:
-            if (customerGroup != null)
+            if (entity != null)
             {
-                return Ok(customerGroup);
+                return Ok(entity);
 
             }
             else
             {
                 return NoContent();
             }
-        }*/
+        }
 
-      /*  [HttpPost]
-        public IActionResult Post([FromBody] CustomerGroup customerGroup)
+        [HttpPost]
+        public IActionResult Post([FromBody] MISAEntity entity)
         {
             try
             {
-                CustomerGroupBL customerGroupBL = new CustomerGroupBL();
+                BaseBL baseBL = new BaseBL();
 
-                var rowAffects = customerGroupBL.Insert(customerGroup);
+                var rowAffects = baseBL.Insert(entity);
                 // 4. Kiểm tra dữ liệu và trả về cho client
                 // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
                 // - Không có dữ liệu thì trả về 204:
@@ -77,7 +74,7 @@ namespace MISA.CukCuk.Api.Controllers
                     return NoContent();
                 }
             }
-            catch (GuardException<CustomerGroup> ex)
+            catch (GuardException<MISAEntity> ex)
             {
                 var mes = new
                 {
@@ -99,15 +96,14 @@ namespace MISA.CukCuk.Api.Controllers
                 return StatusCode(500, mes);
             }
 
-        }*/
+        }
 
-        // PUT api/<CustomerController>/5
-       /* [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] CustomerGroup customerGroup)
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] MISAEntity entity)
         {
-            CustomerGroupBL customerGroupBL = new CustomerGroupBL();
+            BaseBL baseBL = new BaseBL();
 
-            var res = customerGroupBL.Update(customerGroup, id);
+            var res = baseBL.Update(entity, id);
             if (res > 0)
             {
                 return Ok(res);
@@ -117,14 +113,13 @@ namespace MISA.CukCuk.Api.Controllers
                 return NoContent();
             }
         }
-*/
-        // DELETE api/<CustomerController>/5
-        /*[HttpDelete("{id}")]
+
+        [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            CustomerGroupBL customerGroupBL = new CustomerGroupBL();
+            BaseBL baseBL = new BaseBL();
 
-            var res = customerGroupBL.Delete<CustomerGroup>(id);
+            var res = baseBL.Delete<MISAEntity>(id);
             if (res > 0)
             {
                 return Ok(res);
@@ -133,6 +128,7 @@ namespace MISA.CukCuk.Api.Controllers
             {
                 return NoContent();
             }
-        }*/
+        }
+
     }
 }
