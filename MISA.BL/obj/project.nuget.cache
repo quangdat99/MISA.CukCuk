@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "zQI9c+Y8aHaXOst7/I51CGmJ8M2pCGti0cwkqnF0vtZfBGB1Z1/Z6WMJWovXhJ3JjF2bFjgKvJE29iLQyAWPDg==",
+  "success": true,
+  "projectFilePath": "E:\\MISA\\API\\MISA.CukCuk\\MISA.BL\\MISA.BL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dat.dq173003\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
+    "C:\\Users\\dat.dq173003\\.nuget\\packages\\mysqlconnector\\1.3.4\\mysqlconnector.1.3.4.nupkg.sha512"
+  ],
+  "logs": []
+}
