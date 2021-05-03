@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MISA.BL;
 using MISA.BL.Exceptions;
+using MISA.BL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,17 @@ namespace MISA.CukCuk.Api.Controllers
 {
    /* [Route("api/v1/[controller]s")]
     [ApiController]*/
-    public class BaseController<MISAEntity> : ControllerBase
+    public class MISAEntityController<MISAEntity> : ControllerBase
     {
+        IBaseBL<MISAEntity> _baseBL;
+        public MISAEntityController(IBaseBL<MISAEntity> baseBL)
+        {
+            _baseBL = baseBL;
+        }
         [HttpGet]
         public IActionResult Get()
         {
-            BaseBL baseBL = new BaseBL();
-            var entities = baseBL.GetAll<MISAEntity>();
+            var entities = _baseBL.GetAll();
             // 4. Kiểm tra dữ liệu và trả về cho client
             // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
             // - Không có dữ liệu thì trả về 204:
@@ -35,9 +40,8 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            BaseBL baseBL = new BaseBL();
 
-            var entity = baseBL.GetById<MISAEntity>(id);
+            var entity = _baseBL.GetById(id);
 
             // 4. Kiểm tra dữ liệu và trả về cho client
             // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
@@ -58,9 +62,8 @@ namespace MISA.CukCuk.Api.Controllers
         {
             try
             {
-                BaseBL baseBL = new BaseBL();
 
-                var rowAffects = baseBL.Insert(entity);
+                var rowAffects = _baseBL.Insert(entity);
                 // 4. Kiểm tra dữ liệu và trả về cho client
                 // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
                 // - Không có dữ liệu thì trả về 204:
@@ -101,9 +104,8 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody] MISAEntity entity)
         {
-            BaseBL baseBL = new BaseBL();
 
-            var res = baseBL.Update(entity, id);
+            var res = _baseBL.Update(entity, id);
             if (res > 0)
             {
                 return Ok(res);
@@ -117,9 +119,8 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            BaseBL baseBL = new BaseBL();
 
-            var res = baseBL.Delete<MISAEntity>(id);
+            var res = _baseBL.Delete(id);
             if (res > 0)
             {
                 return Ok(res);

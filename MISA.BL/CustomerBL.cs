@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MISA.BL
 {
-    public class CustomerBL:BaseBL
+    public class CustomerBL:BaseBL<Customer>
     {
         /* // Lấy toàn bộ danh sách khách hàng
          public IEnumerable<Customer> GetAll()
@@ -64,7 +64,7 @@ namespace MISA.BL
              return customerDL.Delete<Customer>(id);
          }*/
 
-        protected override void Validate<MISAEntity>(MISAEntity entity)
+        protected override void Validate(Customer entity)
         {
             if (entity is Customer)
             {

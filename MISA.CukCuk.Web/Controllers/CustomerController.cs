@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MISA.BL;
 using MISA.BL.Exceptions;
+using MISA.BL.Interfaces;
 using MISA.Common.Entities;
 using MISA.CukCuk.Api.Controllers;
 using MySqlConnector;
@@ -16,45 +17,12 @@ namespace MISA.CukCuk.Web.Controllers
 {
     [Route("api/v1/[controller]s")]
     [ApiController]
-    public class CustomerController : BaseController<Customer>
+    public class CustomerController : MISAEntityController<Customer>
     {
-        /*[HttpGet]
-        public IActionResult Get()
+        public CustomerController(IBaseBL<Customer> baseBL):base(baseBL)
         {
-            CustomerBL customerBL = new CustomerBL();
-            var customers = customerBL.GetAll<Customer>();
-            // 4. Kiểm tra dữ liệu và trả về cho client
-            // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
-            // - Không có dữ liệu thì trả về 204:
-            if (customers.Count() >0)
-            {
-                return Ok(customers);
 
-            } else
-            {
-                return NoContent();
-            }
-        }*/
-
-        /*[HttpGet("{customerId}")]
-        public IActionResult Get(Guid customerId)
-        {
-            CustomerBL customerBL = new CustomerBL();
-            var customer = customerBL.GetById<Customer>(customerId);
-
-            // 4. Kiểm tra dữ liệu và trả về cho client
-            // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
-            // - Không có dữ liệu thì trả về 204:
-            if (customer != null)
-            {
-                return Ok(customer);
-
-            } else
-            {
-                return NoContent();
-            }
-        }*/
-
+        }
         [HttpGet("Paging")]
         public IActionResult GetPaging (int pageIndex, int pageSize)
         {
@@ -90,80 +58,6 @@ namespace MISA.CukCuk.Web.Controllers
             }
         }
 
-       /* [HttpPost]
-        public IActionResult Post([FromBody] Customer customer)
-        {
-            try
-            {
-                CustomerBL customerBL = new CustomerBL();
-                var rowAffects = customerBL.Insert(customer);
-                // 4. Kiểm tra dữ liệu và trả về cho client
-                // - Nếu có dữ liệu trả về 200 kèm theo dữ liệu
-                // - Không có dữ liệu thì trả về 204:
-                if (rowAffects > 0)
-                {
-                    return Ok(rowAffects);
 
-                }
-                else
-                {
-                    return NoContent();
-                }
-            }
-            catch (GuardException<Customer> ex)
-            {
-                var mes = new
-                {
-                    devMsg = ex.Message,
-                    userMsg = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại!",
-                    field = "CustomerCode",
-                    data = ex.Data
-                };
-                return StatusCode(400, mes);
-            }
-            catch (Exception ex)
-            {
-                var mes = new
-                {
-                    devMsg = ex.Message,
-                    userMsg = "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp",
-                    field = "CustomerCode"
-                };
-                return StatusCode(500, mes);
-            }
-            
-        }
-*/
-        // PUT api/<CustomerController>/5
-        /*[HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] Customer customer)
-        {
-            CustomerBL customerBL = new CustomerBL();
-            var res = customerBL.Update(customer, id);
-            if (res >0)
-            {
-                return Ok(res);
-            }
-            else
-            {
-                return NoContent();
-            }
-        }*/
-
-        // DELETE api/<CustomerController>/5
-        /*[HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            CustomerBL customerBL = new CustomerBL();
-            var res = customerBL.Delete<Customer>(id);
-            if (res > 0)
-            {
-                return Ok(res);
-            }
-            else
-            {
-                return NoContent();
-            }
-        }*/
     }
 }

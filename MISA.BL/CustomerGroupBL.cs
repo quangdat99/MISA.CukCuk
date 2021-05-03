@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MISA.BL
 {
-    public class CustomerGroupBL:BaseBL
+    public class CustomerGroupBL:BaseBL<CustomerGroup>
     {
         /*  public IEnumerable<CustomerGroup> GetAll()
           {
@@ -40,7 +40,7 @@ namespace MISA.BL
               return customerGroupDL.Delete<CustomerGroup>(id);
           }*/
 
-        protected override void Validate<MISAEntity>(MISAEntity entity)
+        protected override void Validate(CustomerGroup entity)
         {
             if (entity is CustomerGroup)
             {
