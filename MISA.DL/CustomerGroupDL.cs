@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MISA.DL
 {
-    public class CustomerGroupDL : BaseDL
+    public class CustomerGroupDL : BaseDL<CustomerGroup>
     {
       
         

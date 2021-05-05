@@ -19,7 +19,7 @@ namespace MISA.CukCuk.Web.Controllers
     [ApiController]
     public class CustomerController : MISAEntityController<Customer>
     {
-        public CustomerController(IBaseBL<Customer> baseBL):base(baseBL)
+        public CustomerController(ICustomerBL customerBL):base(customerBL)
         {
 
         }

@@ -18,7 +18,7 @@ namespace MISA.CukCuk.Api.Controllers
     [ApiController]
     public class CustomerGroupController : MISAEntityController<CustomerGroup>
     {
-        public CustomerGroupController(IBaseBL<CustomerGroup> baseBL) : base(baseBL)
+        public CustomerGroupController(ICustomerGroupBL customerGroupBL) : base(customerGroupBL)
         {
 
         }

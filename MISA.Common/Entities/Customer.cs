@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Common.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace MISA.Common.Entities
     public class Customer
     {
         public Guid CustomerId { get; set; }
+
+        [MISARequired("Mã khách hàng không được phép để trống")]
+        [MISAMaxLength(maxlength:5)]
         public string CustomerCode { get; set; }
         public string FullName { get; set; }
         public int? Gender { get; set; }

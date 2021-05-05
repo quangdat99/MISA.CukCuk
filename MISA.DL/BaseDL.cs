@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MISA.DL.Interfaces;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MISA.DL
 {
-    public class BaseDL
+    public class BaseDL<MISAEntity>:IBaseDL<MISAEntity>
     {
         
        protected string _connectionString = "" +
@@ -21,7 +22,7 @@ namespace MISA.DL
         
        protected IDbConnection _dbConnection;
 
-        public IEnumerable<MISAEntity> GetAll<MISAEntity>()
+        public IEnumerable<MISAEntity> GetAll()
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
             {
@@ -33,7 +34,7 @@ namespace MISA.DL
             
         }
 
-        public MISAEntity GetById<MISAEntity>(Guid entityId)
+        public MISAEntity GetById(Guid entityId)
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
             {
@@ -44,7 +45,7 @@ namespace MISA.DL
             }
         }
 
-        public int Insert<MISAEntity>(MISAEntity entity)
+        public int Insert(MISAEntity entity)
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
             {
@@ -54,7 +55,7 @@ namespace MISA.DL
                 return rowsAffect;
             }
         }
-        public int Update<MISAEntity>(MISAEntity entity, Guid entityId)
+        public int Update(MISAEntity entity, Guid entityId)
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
             {
@@ -69,7 +70,7 @@ namespace MISA.DL
             }
         }
         
-        public int Delete<MISAEntity>(Guid entityId)
+        public int Delete(Guid entityId)
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
             {

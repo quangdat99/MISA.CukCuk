@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Common.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace MISA.Common.Entities
     {
         public Guid? CustomerGroupId { get; set; }
         public string CustomerGroupName { get; set; }
+
+        [MISARequired("Không được để trống mô tả")]
         public string Description { get; set; }
         public DateTime? CreateDate { get; set; }
         public string CreatedBy { get; set; }
